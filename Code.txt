@@ -1,0 +1,65 @@
+# Bisection Method for finding local minima of a function
+# Ali Hagverdiyev                
+
+
+import numpy as np
+import matplotlib.pyplot as plt
+plt.style.use('seaborn-whitegrid')
+import time
+
+
+# we are inputing following values 
+
+epsi=input("tolerance for function values" )
+aa=input("left endpoint")
+bb=input("right endpoint") 
+delta=0.0002
+
+# a and b are endpoint of the interval of the search of local minima
+a=float(aa)-delta
+b=float(bb)+2*delta
+
+# epsilon is a tolerance for difference of function values at endpoints as interval gets narrow 
+
+epsilon=float(epsi)   
+
+# f(x) is a function (you can define any other function)
+
+def f(x):
+    return (x-1)**4
+
+xx = np.arange(a, b, 0.01)
+k=1 
+
+plt.figure(1)   
+
+while abs(f(a)-f(b))>=epsilon:  
+ if f(a)<=f(b): 
+  plt.subplot(1,1,1)  
+  plt.plot(xx, f(xx),'r--')
+  plt.title('iteration number: k= ' + str(k))  
+  plt.ylabel('f(x)')
+  plt.xlabel('x')   
+  k=k+1  
+  plt.plot(a,f(a), 'k-o')
+  plt.plot(b,f(b), 'k-o')  
+  b=(b+a)/2  
+  plt.plot(b, f(b), 'b-o')  
+  plt.pause(1)
+  xxx= b
+ else: 
+  plt.subplot(1,1,1)  
+  plt.plot(xx, f(xx),'r--') 
+  plt.title('iteration number: k= ' + str(k))    
+  plt.ylabel('f(x)')
+  plt.xlabel('x')  
+  k=k+1 
+  plt.plot(a,f(a), 'k-o')
+  plt.plot(b,f(b), 'k-o')  
+  a=(b+a)/2 
+  plt.plot(a, f(a), 'b-o')  
+  plt.pause(1)
+  xxx=a
+
+
+print("Approximation of minima is: x= " + str(xxx))
