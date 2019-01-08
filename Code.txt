@@ -33,33 +33,38 @@ k=1
 
 plt.figure(1)   
 
-while abs(f(a)-f(b))>=epsilon:  
- if f(a)<=f(b): 
-  plt.subplot(1,1,1)  
-  plt.plot(xx, f(xx),'r--')
-  plt.title('iteration number: k= ' + str(k))  
-  plt.ylabel('f(x)')
-  plt.xlabel('x')   
-  k=k+1  
-  plt.plot(a,f(a), 'k-o')
-  plt.plot(b,f(b), 'k-o')  
-  b=(b+a)/2  
-  plt.plot(b, f(b), 'b-o')  
-  plt.pause(1)
-  xxx= b
- else: 
-  plt.subplot(1,1,1)  
-  plt.plot(xx, f(xx),'r--') 
-  plt.title('iteration number: k= ' + str(k))    
-  plt.ylabel('f(x)')
-  plt.xlabel('x')  
-  k=k+1 
-  plt.plot(a,f(a), 'k-o')
-  plt.plot(b,f(b), 'k-o')  
-  a=(b+a)/2 
-  plt.plot(a, f(a), 'b-o')  
-  plt.pause(1)
-  xxx=a
+while abs(b-a)>=epsilon:  
+ if k>0:
+  x1=(a+b-delta)/2
+  x2=(a+b+delta)/2 
+  f1=f(x1)
+  f2=f(x2)
+  if f1<=f2: 
+   plt.subplot(1,1,1)  
+   plt.plot(xx, f(xx),'r--')
+   plt.title('iteration number: k= ' + str(k))  
+   plt.ylabel('f(x)')
+   plt.xlabel('x')   
+   k=k+1  
+   plt.plot(a,f(a), 'k-o')
+   plt.plot(b,f(b), 'k-o')  
+   b=x2  
+   plt.plot(b, f(b), 'b-o')  
+   plt.pause(1)
+   xxx= b
+  else: 
+   plt.subplot(1,1,1)  
+   plt.plot(xx, f(xx),'r--') 
+   plt.title('iteration number: k= ' + str(k))    
+   plt.ylabel('f(x)')
+   plt.xlabel('x')  
+   k=k+1 
+   plt.plot(a,f(a), 'k-o')
+   plt.plot(b,f(b), 'k-o')  
+   a=x1 
+   plt.plot(a, f(a), 'b-o')  
+   plt.pause(1)
+   xxx=a
 
 
 print("Approximation of minima is: x= " + str(xxx))
